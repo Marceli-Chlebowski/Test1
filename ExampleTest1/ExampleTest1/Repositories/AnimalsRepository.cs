@@ -131,5 +131,36 @@ namespace ExampleTest1.Repositories
                 throw;
             }
         }
+
+        public async Task<bool> CheckAnimalClassExists(int id)
+        {
+            const string sql = "SELECT 1 FROM animal_classes WHERE Id = @Id";
+            await using var connection = new SqlConnection(_config.GetConnectionString("Default"));
+            return await connection.ExecuteScalarAsync<bool>(sql, new { Id = id });
+        }
+ 
+        public async Task<AnimalClass> GetAnimalClass(int id)
+        {
+            const string sql = "SELECT Id, Name FROM animal_classes WHERE Id = @Id";
+            await using var connection = new SqlConnection(_config.GetConnectionString("Default"));
+            return await connection.QuerySingleOrDefaultAsync<AnimalClass>(sql, new { Id = id });
+        }
+ 
+        public async Task<IEnumerable<AnimalClass>> GetAllAnimalClasses()
+        {
+            const string sql = "SELECT Id, Name FROM animal_classes";
+            await using var connection = new SqlConnection(_config.GetConnectionString("Default"));
+            return await connection.QueryAsync<AnimalClass>(sql);
+        }
+
+        public Task<IEnumerable<AnimalClass>> GetAnimalClass()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<AnimalClass>> CheckAnimalClassExists()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

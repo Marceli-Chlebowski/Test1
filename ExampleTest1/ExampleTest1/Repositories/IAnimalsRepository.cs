@@ -1,4 +1,5 @@
-﻿using ExampleTest1.Models.DTOs;
+﻿using ExampleTest1.Models.DataModels;
+using ExampleTest1.Models.DTOs;
 
 namespace ExampleTest1.Repositories;
 

@@ -39,16 +39,16 @@ namespace ExampleTest1.Controllers
                 {
                     if (!await _animalRepository.CheckOwnerExists(newAnimalDto.OwnerId))
                         return NotFound($"Owner with id = {newAnimalDto.OwnerId} doesn't exist!");
-
+ 
                     if (!await _animalRepository.CheckAnimalClassExists(newAnimalDto.AnimalClass))
                         return NotFound($"Animal class = \"{newAnimalDto.AnimalClass}\" doesn't exist!");
-
+ 
                     foreach (var procedure in newAnimalDto.Procedures)
                     {
                         if (!await _animalRepository.CheckProcedureExists(procedure.ProcedureId))
                             return NotFound($"Procedure with id = {procedure.ProcedureId} doesn't exist!");
                     }
-
+ 
                     var animal = await _animalRepository.CreateAnimal(newAnimalDto);
                     return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
                 }
