@@ -152,15 +152,6 @@ namespace ExampleTest1.Repositories
             await using var connection = new SqlConnection(_config.GetConnectionString("Default"));
             return await connection.QueryAsync<AnimalClass>(sql);
         }
-
-        public Task<IEnumerable<AnimalClass>> GetAnimalClass()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<AnimalClass>> CheckAnimalClassExists()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
