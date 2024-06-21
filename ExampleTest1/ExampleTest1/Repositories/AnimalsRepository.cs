@@ -152,6 +152,5 @@ namespace ExampleTest1.Repositories
             await using var connection = new SqlConnection(_config.GetConnectionString("Default"));
             return await connection.QueryAsync<AnimalClass>(sql);
         }
-        
     }
 }
