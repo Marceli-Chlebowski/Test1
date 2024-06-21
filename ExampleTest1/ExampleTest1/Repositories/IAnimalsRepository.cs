@@ -2,17 +2,12 @@
 
 namespace ExampleTest1.Repositories;
 
-public interface IAnimalsRepository
+public interface IAnimalRepository
 {
-    Task<bool> DoesAnimalExist(int id);
-    Task<bool> DoesOwnerExist(int id);
-    Task<bool> DoesProcedureExist(int id);
-    Task<AnimalDto> GetAnimal(int id);
-    
-    // Version with implicit transaction
-    Task AddNewAnimalWithProcedures(NewAnimalWithProcedures newAnimalWithProcedures);
-    
-    // Version with transaction scope
-    Task<int> AddAnimal(NewAnimalDTO animal);
-    Task AddProcedureAnimal(int animalId, ProcedureWithDate procedure);
+    Task<bool> CheckAnimalExists(int animalId);
+    Task<AnimalDto> GetAnimal(int animalId);
+    Task<bool> CheckOwnerExists(int ownerId);
+    Task<bool> CheckAnimalClassExists(string animalClass);
+    Task<bool> CheckProcedureExists(int procedureId);
+    Task<AnimalDto> CreateAnimal(NewAnimalDTO animalDetails);
 }
